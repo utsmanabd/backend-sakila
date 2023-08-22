@@ -10,7 +10,13 @@ const InventoryController = require('./../../controller/master_controller/Invent
 const LanguageController = require('./../../controller/master_controller/LanguageController');
 const StaffController = require('./../../controller/master_controller/StaffController');
 const QueryController = require('./../../controller/master_controller/QueryController')
+const UploadController = require('./../../controller/master_controller/UploadController')
+const upload = require('./../../services/upload-file.service')
 
+
+// router.get('/image/:filename', UploadController.getFile)
+router.post('/upload', upload.single('file'), UploadController.upload)
+router.delete('/image/:filename', UploadController.deleteFile)
 // film data
 router.get('/film', FilmController.getAllFilm);
 router.get('/film/:id', FilmController.getFilmById);
@@ -23,6 +29,7 @@ router.get('/actor/:id', ActorController.getActorById)
 router.post('/actor', ActorController.insertActor)
 router.put('/actor/:id', ActorController.updateActor)
 router.delete('/actor/:id', ActorController.deleteActor)
+router.get('/actor-film', ActorController.getFilmActor)
 
 // address data
 router.get('/address', AddressController.getAllAddress)

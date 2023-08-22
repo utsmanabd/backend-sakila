@@ -12,11 +12,23 @@ update = async (id, data) => await sakila('actor').where('actor_id', id).update(
 
 deleteData = async (id) => await sakila('actor').where('actor_id', id).del();
 
+getFilmActor = async () => {
+    return await sakila.raw(`
+    SELECT f.title AS title,
+    GROUP_CONCAT(CONCAT(a.first_name, ' ', a.last_name)) AS list_actor
+    FROM film_actor fa
+    JOIN film f ON fa.film_id = f.film_id
+    JOIN actor a ON fa.actor_id = a.actor_id
+    GROUP BY f.title;
+    `)
+}
+
 module.exports = {
     getAll,
     getById,
     getWhere,
     insert,
     update,
-    deleteData
+    deleteData,
+    getFilmActor
 };

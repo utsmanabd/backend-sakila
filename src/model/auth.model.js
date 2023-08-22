@@ -6,6 +6,7 @@ a.id,
 a.role_id,
 a.nik AS nik,
 a.name AS name,
+a.image AS image,
 b.role_name AS role_name,
 b.detail AS role_detail,
 group_concat( d.code SEPARATOR ', ' ) AS permissions 

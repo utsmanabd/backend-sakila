@@ -7,6 +7,11 @@ const auth_routes = require('./utility_routes/auth.routes');
 
 const { verifyToken, accessControl } = require('../services/auth.service');
 
+const UploadController = require('./../controller/master_controller/UploadController')
+
+// upload file
+router.get('/image/:filename', UploadController.getFile)
+
 // not found route
 router.get('/not-found', function(req, res) {
     res.status(404).sendFile(path.join(__dirname, '../views/not-found.html'));

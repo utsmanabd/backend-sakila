@@ -34,10 +34,16 @@ deleteActor = async (req, res) => {
     }
 }
 
+getFilmActor = async (req, res) => {
+    let data = await model.getFilmActor();
+    res.status(200).json(data);
+}
+
 module.exports = {
     getActorById,
     getAllActor,
     insertActor,
     updateActor,
-    deleteActor
+    deleteActor,
+    getFilmActor
 };
